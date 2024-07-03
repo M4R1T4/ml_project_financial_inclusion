@@ -1,12 +1,11 @@
 ## Machine Learning Project - Financial Inclusion in Africa
 
-
+![](/plots_and_pictures/africa_symbol_big.png)
 
 We are [SaliFishe](https://github.com/SaliFishe) and 
 [M4R1T4](https://github.com/M4R1T4) and we both enjoy Data Analysis and Machine Learning. We teamed up to work on this [Zindi Project](https://zindi.africa/competitions/financial-inclusion-in-africa) , explore  the Data, create Machine Learning Models and have fun learning while doing it. 
 
 
-![](/plots_and_pictures/africa_symbol_big.png)
 
 ## The Zindi-Project
 
