@@ -17,9 +17,17 @@ The objective of this competition is to create a machine learning model to predi
 
 ## Our Repository ...
 
-... is still under construction.  
+... is still in progress.  
 ... but feel free to take a look at our previous work. 
 
+### Structure and Content
+
+| Folder| Content| Description|
+|---|---|---|
+| main| financial_inclusion_eda.md | Presentation and description of our insights from the data |
+|data_analysis| 01_Data_and_EDA.ipynb | Jupyter notebook with the code to create mainly the bar plots and heatmaps (author M4R1T4)|
+|models|02_Baseline_Model.ipynb| Jupyter notebook with the code for the KNN Base Model (author M4R1T4)|
+|models| model_functions.py| functions for modelling and evaluation (author M4R1T4)|
 ---
 
 ## Set up your Environment
