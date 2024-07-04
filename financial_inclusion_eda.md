@@ -5,16 +5,17 @@
 In the years 2016-2018, survey was conducted in Kenya, Tanzania, Rwanda and Uganda to find out how many people in these countries have a bank account (or not) and other factors that could have an influence.
 
 
-* 23,500 people were interviewed <br/>
+* 23,500 people were interviewed 
 * 14% of the people use a bank account
 * 86% have no access to a bank account
 
 
 ## The Countries
 
-The survey was conducted in 4 East African countries. Kenya, Tanzania, Rwanda and Uganda.   
+The survey was conducted in 4 East African countries:  
+ Kenya, Tanzania, Rwanda and Uganda.   
 
-![overview_africa](/plots_and_pictures/....png)
+![overview_africa](/plots_and_pictures/Africa_Overview.png)
 
 Although these 4 are neighbouring countries, they differ greatly in terms of their populations, landscapes, historical conflicts and the resulting economic structures.   
 
@@ -32,9 +33,20 @@ On the left-hand side of the chart, the bars show the number of people in the co
 
 ## Bank Accounts
 
-![picture](/plots_and_pictures/....png)
+The Pie chart shows the percentage of those who have a bank account in yellow and those who don’t have a account in green.
 
-Pie chart shows the percentage of those who have a bank account in green and those who don’t have a account in orange
+![Bank Account Rate](/plots_and_pictures/Bank_Account_Rate.png)
+
+Only 14 percent of the people interviewed have a bank account at all. That is very few and we will have to take this imbalance into account in the course of the project.
+
+In the data analysis we will often show the bank account rate to compare different classes or countries.   
+
+When modelling the prediction model, we are faced with the challenge that the larger class will dominate the predictions. To compensate for this, we will try out various methods. 
+
+
+## Bank Account Rates per Country
+
+
 the rate is very different in the various countries
 A quarter of respondents in Kenya have a bank account
 the proportion of people with bank access is much smaller in other countries (11 % in Rwanda, 9% in Uganda and Tanzania)
@@ -80,8 +92,24 @@ Beschreibung was ich sehe
 
 ### Dependence between Education level and Bank Account
 
-Da wir nur knapp 20% Bank accounts haben ist es sinnvoll die Anteile an Bank accounts anzuschauen um den Einfluss von Education Level zu sehen. 
+As we only have 14% bank accounts, we wanted to see which education level has the highest proportion of bank accounts. In this graph you can see on the left side the number of respondents who have this education level. On the right side you can see the bank account rate for the respective education. 
 
 ![Education_Bank_rate](/plots_and_pictures/edu_level_bank_rate.png)
 
-Wenn jemand special Education hat, dann ist ist die Chance hoch, einen Bank account zu haben, aber es sind halt nicht viele. Aufpassen, das Argument geht auch anders herum, bei Other/No answer Job Type
+It can be seen that someone with a higher or specialised education is more likely to have a bank account. However, it should also be noted that the number of people who have this education is very small, so that a few people with a bank account have a greater influence on the rate. The same applies to the _Other/Don't_ know statement, which also shows a high rate, although there are only very few participants who have made this statement. 
+
+However, if we now also include _No formal education_, _primary education_ and _secondary education_, there is a tendency for higher levels of education to be more likely to have a bank account. 
+
+
+## Household Size
+
+The survey also asked about the size of the household in which the interviewee lives. We looked at how high the proportion of bank accounts is for classes of the same household size. This can be seen in the following chart. 
+
+The orange bars represent the number of households of the same size (the x-axis shows the number of people living in the household). The number is shown on the left y-axis. 
+The green diamonds represent the proportion of bank accounts within this household class. The corresponding scale is located on the right y-axis.
+
+![Houselhold Size](/plots_and_pictures/household_barplot.png)
+
+## Age of the respondent
+
+![Age](/plots_and_pictures/age_barplot.png)
