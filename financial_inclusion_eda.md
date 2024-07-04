@@ -124,4 +124,4 @@ For each of these classes, we have calculated the proportion of bank accounts. T
 
 ![Age](/plots_and_pictures/age_barplot.png)
 
-In the graph, we can see that younger people have fewer bank accounts, but the rate increases with age. From the age group 26-30 (which is also the largest group), the rate remains relatively constant. At an older age, the rate decreases again slightly, but there are also fewer participants. Generally speaking, the age of those affected has hardly any influence on the bank account rate, except for the very young participants. 
+In the graph, we can see that younger people have fewer bank accounts, but the rate increases with age. From the age group 26-30 (which is also the largest group), the rate remains relatively constant. At an older age, the rate decreases again slightly, but there are also fewer participants. Generally speaking, the age of the respondents has hardly any influence on the bank account rate, except for the very young participants. 
