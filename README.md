@@ -18,7 +18,7 @@ The objective of this competition is to create a machine learning model to predi
 ## Our Repository ...
 
 ... is still in progress.  
-... but feel free to take a look at our previous work. 
+... but feel free to take a look at our previous work:
 
 ### Structure and Content
 

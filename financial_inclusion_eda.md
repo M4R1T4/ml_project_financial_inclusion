@@ -35,7 +35,7 @@ On the left-hand side of the chart, the bars show the number of people in the co
 
 The Pie chart shows the percentage of those who have a bank account in yellow and those who don’t have a account in green.
 
-![Bank Account Rate](/plots_and_pictures/Bank_Account_Rate.png)
+![Bank Account Rate](/plots_and_pictures/bank_account_rvrsd.png)
 
 Only 14 percent of the people interviewed have a bank account at all. That is very few and we will have to take this imbalance into account in the course of the project.
 
@@ -46,21 +46,28 @@ When modelling the prediction model, we are faced with the challenge that the la
 
 ## Bank Account Rates per Country
 
+It is also interesting to see whether the bank account rate is the same in all countries or whether there are differences. For this reason, we have analysed the percentage of bank accounts for the individual countries.   
+Here too, the pie chart shows the proportion of participants without bank accounts in green and the proportion with bank accounts per country in yellow. 
 
-the rate is very different in the various countries
-A quarter of respondents in Kenya have a bank account
-the proportion of people with bank access is much smaller in other countries (11 % in Rwanda, 9% in Uganda and Tanzania)
+![Bank Account Rate per country](/plots_and_pictures/bank_account_countrys.png)
+
+The rate is very different in the various countries.
+A quarter of respondents in Kenya have a bank account.
+But in the other three countries, the proportion of people with bank access is much smaller (11 % in Rwanda, 9% in Uganda and Tanzania)
 
 ## Gender
 
-Who is more likely to have a bank account? Men or Woman?
+An other question is: Who is more likely to have a bank account, Men or Woman?  
 
-![gender](/plots_and_pictures/Gender.png)
+For this analysis, we first presented the proportion of women and men and then divided this up to show the proportion of bank accounts per gender.
+
+![gender](/plots_and_pictures/gender.png)
 
 
-The majority of respondents are women (around 60%)
-But only 11 % of female interviewees have a bank account. 
-Almost every fifth man (19%) has a bank account
+As we see, the majority of respondents are women (around 60%). 
+But only 11 % of female interviewees have a bank account, thats near to every . 
+
+In contrast, almost every fifth man (19%) has a bank account. The ratio between the two genders is almost 2:1. 
 
 ## Cell Phone Access
 
@@ -88,7 +95,7 @@ Because the number of people surveyed varied from country to country, we have ca
 
 ![Education_per_Country](/plots_and_pictures/Education_level_per_Country.png)
 
-Beschreibung was ich sehe
+We can see that the majority of respondents had at least a primary education. The proportion then decreases with the higher levels of education. In Tanzania and Rwanda, there is also a large proportion with no education, whereas Tanzania also has the highest proportion of higher education. Uganda and Kenya are relatively similar in the distribution of educational attainment. But the other two countries are more different from the two and from each other. 
 
 ### Dependence between Education level and Bank Account
 
@@ -112,4 +119,9 @@ The green diamonds represent the proportion of bank accounts within this househo
 
 ## Age of the respondent
 
+For the age of the respondents, we have summarised age groups in a 5-year range. these age groups are plotted on the x-axis and the orange bars represent the number of respondents in the age group (related to the left axis).
+For each of these classes, we have calculated the proportion of bank accounts. This proportion is shown with green diamonds (values can be read on the right-hand axis).
+
 ![Age](/plots_and_pictures/age_barplot.png)
+
+In the graph, we can see that younger people have fewer bank accounts, but the rate increases with age. From the age group 26-30 (which is also the largest group), the rate remains relatively constant. At an older age, the rate decreases again slightly, but there are also fewer participants. Generally speaking, the age of those affected has hardly any influence on the bank account rate, except for the very young participants. 
