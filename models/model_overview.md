@@ -1,3 +1,3 @@
-|Model Name|Metrics|plot|
-|---|---|---|
-| ***Base Model KNN*** <br/> Feature: Job Type | |![](/plots_and_pictures/barplot_knn_basemodel.png)|
+|Metrics|Bars|
+|---|---|
+|![](/plots_and_pictures/model_knn_basemodel_scatter.png) |![](/plots_and_pictures/model_knn_basemodel_barplot.png)|

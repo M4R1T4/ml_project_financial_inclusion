@@ -5,6 +5,7 @@ import seaborn as sns
 
 from matplotlib.colors import LinearSegmentedColormap
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from imblearn.metrics import sensitivity_score, specificity_score, geometric_mean_score
 
 heat_fringe =  LinearSegmentedColormap.from_list("", ['gold', 'darkorange', '#C43714'], N=256, gamma=1.0)
 bar_colors = ['navy', 'lightskyblue']
@@ -26,16 +27,29 @@ def model_scores_df(model, Train_X, Test_X, Train_Y, Test_Y, model_name:str):
     '''
     pred_train = model.predict(Train_X)
     pred_test = model.predict(Test_X)
+    
     model_df = pd.DataFrame([{'model_name': model_name,  
                 'train_accuracy': accuracy_score(Train_Y, pred_train).round(2), 
                 'test_accuracy': accuracy_score(Test_Y, pred_test).round(2),
-                'train_precision': precision_score(Train_Y, pred_train).round(2), 
-                'test_precision': precision_score(Test_Y, pred_test).round(2),
-                'train_recall': recall_score(Train_Y, pred_train).round(2), 
-                'test_recall': recall_score(Test_Y, pred_test).round(2),
-                'train_f1': f1_score(Train_Y, pred_train).round(2), 
-                'test_f1': f1_score(Test_Y, pred_test).round(2),
+                'train_gmean': geometric_mean_score(Train_Y, pred_train).round(2), 
+                'test_gmean': geometric_mean_score(Test_Y, pred_test).round(2),
+                'train_sensitivity': sensitivity_score(Train_Y, pred_train).round(2), 
+                'test_sensitivity': sensitivity_score(Test_Y, pred_test).round(2),
+                'train_specificity': specificity_score(Train_Y, pred_train).round(2), 
+                'test_specificity': specificity_score(Test_Y, pred_test).round(2)
                 }])
+    """            
+    model_dict = {'model_name': model_name,  
+                'train_accuracy': accuracy_score(Train_Y, pred_train).round(2), 
+                'test_accuracy': accuracy_score(Test_Y, pred_test).round(2),
+                'train_gmean': geometric_mean_score(Train_Y, pred_train).round(2), 
+                'test_gmean': geometric_mean_score(Test_Y, pred_test).round(2),
+                'train_sensitivity': sensitivity_score(Train_Y, pred_train).round(2), 
+                'test_sensitivity': sensitivity_score(Test_Y, pred_test).round(2),
+                'train_specificity': specificity_score(Train_Y, pred_train).round(2), 
+                'test_specificity': specificity_score(Test_Y, pred_test).round(2)
+                }
+                """
 
     return model_df
 
@@ -123,5 +137,17 @@ def conf_matrix_as_bar_abs(confusion_matrix_local):
     b.set_xticklabels(['No Bank Account', 'Bank Account'])
     for c in ax.containers:
         ax.bar_label(c,fmt ='{:.0f}' , label_type='edge')
+
+    return
+
+def metrics_line_scatterplot(local_metric_df):
+    g = sns.lineplot(x = [0,1], y = [0,1], color = 'lightgrey')
+    g = sns.scatterplot(x = local_metric_df.train_accuracy, y = local_metric_df.train_accuracy, color = '#076B00', s=48)
+    g = sns.scatterplot(x = local_metric_df.train_sensitivity, y = local_metric_df.test_sensitivity, color = 'gold',  s=48)
+    g = sns.scatterplot(x = local_metric_df.train_specificity, y = local_metric_df.test_specificity, color = '#C43714',  s=48)
+    g = sns.scatterplot(x = local_metric_df.train_gmean, y = local_metric_df.test_gmean, color = 'Cornflowerblue',  s=48)
+    g.set_title(local_metric_df.model_name[0])
+    g.set_xlabel('train metrics')
+    g.set_ylabel('test metrics')
 
     return
