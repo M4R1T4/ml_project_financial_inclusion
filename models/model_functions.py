@@ -4,11 +4,17 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from matplotlib.colors import LinearSegmentedColormap
+
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV, RandomizedSearchCV
+
 from imblearn.metrics import sensitivity_score, specificity_score, geometric_mean_score
 
+
 heat_fringe =  LinearSegmentedColormap.from_list("", ['gold', 'darkorange', '#C43714'], N=256, gamma=1.0)
-bar_colors = ['navy', 'lightskyblue']
+bar_colors = ['navy', '#DA3287']
 
 def train_model(ModelClass, X_train, Y_train, **kwargs):
     '''
@@ -19,6 +25,19 @@ def train_model(ModelClass, X_train, Y_train, **kwargs):
 
     return model
 
+def knn_cross_validation(X_train, y_train):
+    # Fit and evaluate model without hyperparameter tuning using cross validation and unscaled data 
+    knn_classifier = KNeighborsClassifier()
+    scores = cross_val_score(knn_classifier, X_train, y_train, cv=7, n_jobs=-1)
+
+    # Evaluation 
+    print('Score:', round(scores.mean(), 4))
+    # plotting the scores and average score
+    plt.axhline(y=scores.mean(), color='y', linestyle='-')
+    sns.barplot(x=[1,2,3,4,5,6,7],y=scores).set_title('Scores of the K-Folds Models')
+
+    return
+
 def model_scores_df(model, Train_X, Test_X, Train_Y, Test_Y, model_name:str):
     '''
         the function predict Train and Test Data and caclculate the 
@@ -28,6 +47,7 @@ def model_scores_df(model, Train_X, Test_X, Train_Y, Test_Y, model_name:str):
     pred_train = model.predict(Train_X)
     pred_test = model.predict(Test_X)
     
+    """
     model_df = pd.DataFrame([{'model_name': model_name,  
                 'train_accuracy': accuracy_score(Train_Y, pred_train).round(2), 
                 'test_accuracy': accuracy_score(Test_Y, pred_test).round(2),
@@ -38,7 +58,7 @@ def model_scores_df(model, Train_X, Test_X, Train_Y, Test_Y, model_name:str):
                 'train_specificity': specificity_score(Train_Y, pred_train).round(2), 
                 'test_specificity': specificity_score(Test_Y, pred_test).round(2)
                 }])
-    """            
+                """
     model_dict = {'model_name': model_name,  
                 'train_accuracy': accuracy_score(Train_Y, pred_train).round(2), 
                 'test_accuracy': accuracy_score(Test_Y, pred_test).round(2),
@@ -49,9 +69,9 @@ def model_scores_df(model, Train_X, Test_X, Train_Y, Test_Y, model_name:str):
                 'train_specificity': specificity_score(Train_Y, pred_train).round(2), 
                 'test_specificity': specificity_score(Test_Y, pred_test).round(2)
                 }
-                """
+                
 
-    return model_df
+    return model_dict
 
 def conf_matrix_heatmap_perc(confusion_matrix_local):
     conf_matrix_perc = (confusion_matrix_local / confusion_matrix_local.sum()) * 100
@@ -140,7 +160,14 @@ def conf_matrix_as_bar_abs(confusion_matrix_local):
 
     return
 
-def metrics_line_scatterplot(local_metric_df):
+def metrics_line_scatterplot(metric_dict):
+    """
+    creates a special metrics plot out of the metrics dictionary
+
+    Args:
+        metric_dict (_type_): _description_
+    """
+    local_metric_df = pd.DataFrame([metric_dict])
     g = sns.lineplot(x = [0,1], y = [0,1], color = 'lightgrey')
     g = sns.scatterplot(x = local_metric_df.train_accuracy, y = local_metric_df.train_accuracy, color = '#076B00', s=48)
     g = sns.scatterplot(x = local_metric_df.train_sensitivity, y = local_metric_df.test_sensitivity, color = 'gold',  s=48)
@@ -151,3 +178,4 @@ def metrics_line_scatterplot(local_metric_df):
     g.set_ylabel('test metrics')
 
     return
+
