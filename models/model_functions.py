@@ -187,7 +187,6 @@ def metrics_line_scatterplot(metric_dict):
                     'gmean',
              ])
     plt.yticks(list(np.arange(0,1.1,0.1).round(1)))
-    plt.schow()
 
     return
 
@@ -212,7 +211,7 @@ def metrics_comp_scatterplot(df_name):
     g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_gmean', marker='+', color = 'Cornflowerblue', s=48)
     
     g.set_xticklabels(g.get_xticklabels(), rotation=90)
-    g.set(title = 'mean absolute error')
+    g.set(title = 'metrics on train and test data')
     g.legend(loc='upper right', 
              bbox_to_anchor=(1.2, 1),
              labels=['test_accuracy',
