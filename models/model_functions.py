@@ -169,7 +169,7 @@ def metrics_line_scatterplot(metric_dict):
     """
     local_metric_df = pd.DataFrame([metric_dict])
     g = sns.lineplot(x = [0,1], y = [0,1], color = 'lightgrey')
-    g = sns.scatterplot(x = local_metric_df.train_accuracy, y = local_metric_df.train_accuracy, color = '#076B00', s=48)
+    g = sns.scatterplot(x = local_metric_df.train_accuracy, y = local_metric_df.test_accuracy, color = '#076B00', s=48)
     g = sns.scatterplot(x = local_metric_df.train_sensitivity, y = local_metric_df.test_sensitivity, color = 'gold',  s=48)
     g = sns.scatterplot(x = local_metric_df.train_specificity, y = local_metric_df.test_specificity, color = '#C43714',  s=48)
     g = sns.scatterplot(x = local_metric_df.train_gmean, y = local_metric_df.test_gmean, color = 'Cornflowerblue',  s=48)
@@ -179,3 +179,40 @@ def metrics_line_scatterplot(metric_dict):
 
     return
 
+def metrics_comp_scatterplot(df_name):
+    '''
+        function shows a seaborn scatterplot from a special data frame 
+        with accuracy, sensitivity, specificity and gmean from train and test data 
+    '''
+
+    plt.figure(figsize=(12,8))
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'test_accuracy', color = '#076B00', s=48)
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_accuracy', marker='+', color = '#076B00', s=48)
+
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'test_sensitivity', color = 'gold', s=48)
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_sensitivity', marker='+', color = 'gold', s=48)
+
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'test_specificity', color = '#C43714', s=48)
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_specificity', marker='+', color = '#C43714', s=48)
+
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'test_gmean', color = 'Cornflowerblue', s=48)
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_gmean', marker='+', color = 'Cornflowerblue', s=48)
+    
+    g.set_xticklabels(g.get_xticklabels(), rotation=90)
+    g.set(title = 'mean absolute error')
+    g.legend(loc='upper right', 
+             bbox_to_anchor=(1.2, 1),
+             labels=['test_accuracy',
+                'train_accuracy',
+                'test_sensitivity',
+                'train_sensitivity',
+                'test_specificity',
+                'train_specificity',
+                'test_gmean',
+                'train_gmean'
+                ] )
+    sns.set_style('whitegrid', {'grid.linestyle': '--'})
+    plt.yticks(list(np.arange(0,1.1,0.1).round(1)))
+    plt.show();
+
+    return
