@@ -15,6 +15,7 @@ from imblearn.metrics import sensitivity_score, specificity_score, geometric_mea
 
 heat_fringe =  LinearSegmentedColormap.from_list("", ['gold', 'darkorange', '#C43714'], N=256, gamma=1.0)
 bar_colors = ['navy', '#DA3287']
+sns.set_style('whitegrid', {'grid.linestyle': '--'})
 
 def train_model(ModelClass, X_train, Y_train, **kwargs):
     '''
@@ -170,12 +171,23 @@ def metrics_line_scatterplot(metric_dict):
     local_metric_df = pd.DataFrame([metric_dict])
     g = sns.lineplot(x = [0,1], y = [0,1], color = 'lightgrey')
     g = sns.scatterplot(x = local_metric_df.train_accuracy, y = local_metric_df.test_accuracy, color = '#076B00', s=48)
-    g = sns.scatterplot(x = local_metric_df.train_sensitivity, y = local_metric_df.test_sensitivity, color = 'gold',  s=48)
+    g = sns.scatterplot(x = local_metric_df.train_sensitivity, y = local_metric_df.test_sensitivity, color = 'darkorange',  s=48)
     g = sns.scatterplot(x = local_metric_df.train_specificity, y = local_metric_df.test_specificity, color = '#C43714',  s=48)
     g = sns.scatterplot(x = local_metric_df.train_gmean, y = local_metric_df.test_gmean, color = 'Cornflowerblue',  s=48)
     g.set_title(local_metric_df.model_name[0])
     g.set_xlabel('train metrics')
     g.set_ylabel('test metrics')
+    g.legend(loc='lower right', 
+             #bbox_to_anchor=(0.5, 0.5),
+             labels=['proportion 0.5',
+                    '',
+                    'accuracy',
+                    'sensitivity',
+                    'specificity',
+                    'gmean',
+             ])
+    plt.yticks(list(np.arange(0,1.1,0.1).round(1)))
+    plt.schow()
 
     return
 
@@ -186,11 +198,12 @@ def metrics_comp_scatterplot(df_name):
     '''
 
     plt.figure(figsize=(12,8))
+    sns.set_style('whitegrid', {'grid.linestyle': '--'})
     g = sns.scatterplot(data = df_name, x = 'model_name', y = 'test_accuracy', color = '#076B00', s=48)
     g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_accuracy', marker='+', color = '#076B00', s=48)
 
-    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'test_sensitivity', color = 'gold', s=48)
-    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_sensitivity', marker='+', color = 'gold', s=48)
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'test_sensitivity', color = 'darkorange', s=48)
+    g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_sensitivity', marker='+', color = 'darkorange', s=48)
 
     g = sns.scatterplot(data = df_name, x = 'model_name', y = 'test_specificity', color = '#C43714', s=48)
     g = sns.scatterplot(data = df_name, x = 'model_name', y = 'train_specificity', marker='+', color = '#C43714', s=48)
@@ -211,7 +224,7 @@ def metrics_comp_scatterplot(df_name):
                 'test_gmean',
                 'train_gmean'
                 ] )
-    sns.set_style('whitegrid', {'grid.linestyle': '--'})
+    
     plt.yticks(list(np.arange(0,1.1,0.1).round(1)))
     plt.show();
 
