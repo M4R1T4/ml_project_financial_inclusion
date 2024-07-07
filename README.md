@@ -26,11 +26,12 @@ The objective of this competition is to create a machine learning model to predi
 |---|---|---|
 | main| financial_inclusion_eda.md | Presentation and description of our insights from the data |
 |data_analysis| 01_Data_and_EDA.ipynb | Jupyter notebook with the code to create mainly the bar plots and heatmaps (author M4R1T4)|
-|models|01_Baseline_Model.ipynb| Jupyter notebook with the KNN Base Model (author M4R1T4)|
-|models|02_KNN_Model_Scaling_CrossVal.ipynb| Jupyter notebook with KNN Scaling Cross Validation (author M4R1T4)|
-|models|03_KNN_Model_Variants.ipynb| Jupyter notebook with KNN Models with different parameter (author M4R1T4)|
-|models|04_Tree_Models_Variants.ipynb| Jupyter notebook with Decision Tree and Random Forest Models (author M4R1T4)|
+|models|01_Baseline_Model.ipynb| The KNN Base Model (author M4R1T4)|
+|models|02_KNN_Model_Scaling_CrossVal.ipynb| KNN Scaling Cross Validation (author M4R1T4)|
+|models|03_KNN_Model_Variants.ipynb| KNN Models with different parameter (author M4R1T4)|
+|models|04_Tree_Models_Variants.ipynb| Decision Tree and Random Forest Models (author M4R1T4)|
 |models| model_functions.py| functions for modelling and evaluation (author M4R1T4)|
+|models| model_overview.md| Overview of the performance of the different models (author M4R1T4)|
 ---
 
 ## Set up your Environment
