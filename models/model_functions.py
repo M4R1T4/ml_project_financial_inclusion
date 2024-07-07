@@ -14,7 +14,7 @@ from imblearn.metrics import sensitivity_score, specificity_score, geometric_mea
 
 
 heat_fringe =  LinearSegmentedColormap.from_list("", ['gold', 'darkorange', '#C43714'], N=256, gamma=1.0)
-bar_colors = ['navy', '#DA3287']
+bar_colors = ['darkorange', 'cornflowerblue']
 sns.set_style('whitegrid', {'grid.linestyle': '--'})
 
 def train_model(ModelClass, X_train, Y_train, **kwargs):
@@ -95,6 +95,7 @@ def conf_matrix_as_bar_perc(confusion_matrix_local):
     Args:
         confusion_matrix_local (_type_): _description_
     """
+    
     conf_matrix_perc = (confusion_matrix_local / confusion_matrix_local.sum()) * 100
     local_df = pd.DataFrame([{'class':'0',
                                    'statement': True,
@@ -132,7 +133,7 @@ def conf_matrix_as_bar_abs(confusion_matrix_local):
     Args:
         confusion_matrix_local (_type_): _description_
     """
-    conf_matrix_perc = (confusion_matrix_local / confusion_matrix_local.sum()) * 100
+
     local_df = pd.DataFrame([{'class':'0',
                                    'statement': True,
                                    'pred': confusion_matrix_local[0][0]},
@@ -146,6 +147,11 @@ def conf_matrix_as_bar_abs(confusion_matrix_local):
                                    'statement': False,
                                    'pred':confusion_matrix_local[1][0] }])
 
+    pred_class_0_true = int(round((confusion_matrix_local[0][0] / (confusion_matrix_local[0][0] + confusion_matrix_local[0][1]))*100))
+    pred_class_0_false = int(round((confusion_matrix_local[0][1] / (confusion_matrix_local[0][0] + confusion_matrix_local[0][1]))*100))
+    
+    pred_class_1_false = int(round((confusion_matrix_local[1][0] / (confusion_matrix_local[1][0] + confusion_matrix_local[1][1]))*100))
+    pred_class_1_true = int(round((confusion_matrix_local[1][1] / (confusion_matrix_local[1][0] + confusion_matrix_local[1][1]))*100))
     sns.set_palette(bar_colors)
 
     b = sns.catplot(data=local_df, x='class',y = 'pred', hue = 'statement', kind='bar')
@@ -153,12 +159,19 @@ def conf_matrix_as_bar_abs(confusion_matrix_local):
     b.set(xlabel='',
         ylabel='Number of predicted Values',
         title='')
-    sns.move_legend(b, "upper right", title=None,  bbox_to_anchor=(0.9, 0.9))
+    sns.move_legend(b, "upper right", title=None,  bbox_to_anchor=(0.9, 0.8))
     ax = b.facet_axis(0,0)
     b.set_xticklabels(['No Bank Account', 'Bank Account'])
+    """ 
     for c in ax.containers:
         ax.bar_label(c,fmt ='{:.0f}' , label_type='edge')
+    ax.bar_label(c,fmt ='{:.0f}' , label_type='edge')
+    """
 
+    #ax.text(-0.25,50.0, f'{pred_class_0_false} %', {'fontstyle':'normal','size': '12', 'color':'black'}, alpha = 1.0)
+    ax.text(0.6,2500.0, f'true pred. major class: {pred_class_0_true} %', {'fontstyle':'normal','size': '12', 'color':'black'}, alpha = 1.0)
+    #ax.text(0.73,50.0, f'{pred_class_1_false} %', {'fontstyle':'normal','size': '12', 'color':'black'}, alpha = 1.0)
+    ax.text(0.6,2250.0, f'true pred. minor class: {pred_class_1_true} %', {'fontstyle':'normal','size': '12', 'color':'black'}, alpha = 1.0)
     return
 
 def metrics_line_scatterplot(metric_dict):
